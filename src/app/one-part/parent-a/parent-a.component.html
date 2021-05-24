@@ -1,0 +1,6 @@
+<h1>Parte UNO</h1>
+<h2>{{ message }}</h2>
+<input type="email" [(ngModel)]="message">
+<p>Cantidad de click: {{ counter }}</p>
+<app-child-a buttonText="Aumentar" (clickEmitter)="aumentar()"></app-child-a>
+<app-child-a buttonText="Disminuirr" (clickEmitter)="decrementar()"></app-child-a>
