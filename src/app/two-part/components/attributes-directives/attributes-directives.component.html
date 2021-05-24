@@ -1,0 +1,44 @@
+<h2>Attributes directives</h2>
+<label>
+  ¿Has red text?
+  <input type="checkbox" [(ngModel)]="hasRedText">
+</label>
+<label>
+  ¿Has green border?
+  <input type="checkbox" [(ngModel)]="hasGreenBorder">
+</label>
+<label>
+  ¿Has gray background?
+  <input type="checkbox" [(ngModel)]="hasBackgroundGray">
+</label>
+
+<section>
+  <h3 appHighlight>ngClass Directive</h3>
+  <p>
+    Current Classes: {{ currentClasses|json }}
+  </p>
+  <button (click)="setCurrentClasses()">Refresh classes</button>
+  <div [ngClass]="hasRedText ? 'red-text' : ''">
+    <p>I'm div with ngClass directive with an expression.</p>
+  </div>
+  <div [ngClass]="currentClasses">
+    <p>I'm div with ngClass directive with a method.</p>
+  </div>
+</section>
+
+<section>
+  <h3 appHighlight>ngStyles Directive</h3>
+  <p>
+    Current Styles: {{ currentStyles|json }}
+  </p>
+  <button (click)="setCurrentStyles()" >Refresh styles</button>
+  <div [ngStyle]="currentStyles">
+    <p>I'm div with ngStyles directive with inline styles.</p>
+  </div>
+</section>
+<section>
+  <h3 appHighlight>Custom Directive</h3>
+  <div >
+    <p>I'm div with appHighlight directive.</p>
+  </div>
+</section>

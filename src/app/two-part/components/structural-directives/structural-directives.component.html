@@ -1,0 +1,50 @@
+<h2>Structural directives</h2>
+<button (click)="addFamilyMember()">Agregar persona</button>
+<button (click)="removeFamilyMember()">Eliminar persona</button>
+<ng-container *ngIf="items.length > 0; else notItems">
+  <label>
+    Personas
+    <select placeholder="Seleccione una persona">
+      <option *ngFor="let item of items" [value]="item.firstName">
+        {{ item.firstName }} {{ item.lastName }}
+      </option>
+    </select>
+  </label>
+</ng-container>
+<ng-template #notItems>
+  <p>No hay elementos</p>
+</ng-template>
+
+<fieldset>
+  <legend>Switch Case Color</legend>
+  <label>
+    Azul
+    <input type="radio" value="azul" [(ngModel)]="color">
+  </label>
+  <label>
+    Rojo
+    <input type="radio" value="rojo" [(ngModel)]="color">
+  </label>
+  <label>
+    Verde
+    <input type="radio" value="verde" [(ngModel)]="color">
+  </label>
+  <label>
+    Ninguno
+    <input type="radio" value="ninguno" [(ngModel)]="color">
+  </label>
+</fieldset>
+<div [ngSwitch]="color">
+  <ng-container *ngSwitchCase="'azul'">
+    <p>COLOR AZUL</p>
+  </ng-container>
+  <ng-container *ngSwitchCase="'rojo'">
+    <p>COLOR ROJO</p>
+  </ng-container>
+  <ng-container *ngSwitchCase="'verde'">
+    <p>COLOR VERDE</p>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <p>SIN COLOR</p>
+  </ng-container>
+</div>
