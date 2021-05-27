@@ -5,7 +5,7 @@ import { GrandChildAComponent } from './grand-child-a/grand-child-a.component';
 import { ParentAComponent } from './parent-a/parent-a.component';
 import { FormsModule } from '@angular/forms';
 
-
+import { OnePartRoutingModule } from './one-part-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,11 +16,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-  ],
-  exports: [
-    ChildAComponent,
-    ParentAComponent,
-    GrandChildAComponent,
+    OnePartRoutingModule,
   ]
 })
 export class OnePartModule { }

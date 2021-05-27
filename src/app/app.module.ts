@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OnePartModule } from './one-part/one-part.module';
 import { TwoPartModule } from './two-part/two-part.module';
+import { PruebaComponent } from './prueba/prueba.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PruebaComponent,
   ],
   imports: [
     FormsModule,

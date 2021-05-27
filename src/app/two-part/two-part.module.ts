@@ -5,9 +5,12 @@ import { AttributesDirectivesComponent } from './components/attributes-directive
 import { StructuralDirectivesComponent } from './components/structural-directives/structural-directives.component';
 import { FormsModule } from '@angular/forms';
 import { HighlightDirective } from './directives/highlight.directive';
+import { TwoPartRoutingModule } from './two-part-routing.module';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
+    HomeComponent,
     AttributesDirectivesComponent,
     StructuralDirectivesComponent,
     HighlightDirective,
@@ -15,6 +18,7 @@ import { HighlightDirective } from './directives/highlight.directive';
   imports: [
     CommonModule,
     FormsModule,
+    TwoPartRoutingModule,
   ],
   exports: [
     AttributesDirectivesComponent,
