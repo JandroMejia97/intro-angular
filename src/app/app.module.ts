@@ -4,9 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OnePartModule } from './one-part/one-part.module';
-import { TwoPartModule } from './two-part/two-part.module';
 import { PruebaComponent } from './prueba/prueba.component';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
@@ -18,8 +17,7 @@ import { PruebaComponent } from './prueba/prueba.component';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    OnePartModule,
-    TwoPartModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
