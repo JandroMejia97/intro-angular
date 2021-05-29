@@ -1,0 +1,33 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <h2>Crear producto</h2>
+  <label>
+    Nombre
+    <input type="text" formControlName="name">
+  </label>
+  <label>
+    Precio
+    <input type="number" step="0.01" formControlName="price">
+  </label>
+  <label>
+    Existencia
+    <input type="number" step="1" formControlName="stock">
+  </label>
+  <label>
+    Descripción
+    <textarea cols="30" rows="5" formControlName="description"></textarea>
+  </label>
+  <ng-container *ngIf="productForm.get('description').errors && (productForm.get('description').dirty || productForm.get('description').touched)">
+    <p *ngIf="productForm.get('description').errors.required">
+      La descripción es requerida.
+    </p>
+    <p *ngIf="productForm.get('description').errors.minlength">
+      Debe ingresar al menos 6 caracteres.
+    </p>
+  </ng-container>
+  <button class="secondary" type="button" (click)="clear()">
+    Limpiar
+  </button>
+  <button class="primary" type="submit">
+    Guardar
+  </button>
+</form>
