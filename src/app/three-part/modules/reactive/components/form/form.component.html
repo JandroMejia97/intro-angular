@@ -1,36 +1,44 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
   <h2>Crear producto</h2>
-  <label>
-    Nombre
-    <input type="text" formControlName="name">
-  </label>
-  <label>
-    Precio
-    <input type="number" step="0.01" formControlName="price">
-  </label>
-  <label>
-    Existencia
-    <input type="number" step="1" formControlName="stock">
-  </label>
-  <label>
-    Descripción
-    <textarea cols="30" rows="5" formControlName="description"></textarea>
-  </label>
-  <ng-container *ngIf="descriptionControl.errors && (descriptionControl.dirty || descriptionControl.touched)">
-    <p *ngIf="descriptionControl.errors.isempty">
-      La descripción es requerida.
-    </p>
-    <p *ngIf="descriptionControl.errors.minlength">
-      Debe ingresar al menos 6 caracteres.
-    </p>
-  </ng-container>
+  <mat-form-field appearance="outline">
+    <mat-label>
+      Nombre
+    </mat-label>
+    <input matInput type="text" formControlName="name">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>
+      Precio
+    </mat-label>
+    <input matInput type="number" step="0.01" formControlName="price">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>
+      Existencia
+    </mat-label>
+    <input matInput type="number" step="1" formControlName="stock">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>
+      Descripción
+    </mat-label>
+    <textarea matInput cols="30" rows="5" formControlName="description"></textarea>
+    <mat-error>
+      <ng-container *ngIf="descriptionControl.errors?.isempty">
+        La descripción es requerida.
+      </ng-container>
+      <ng-container *ngIf="descriptionControl.errors?.minlength">
+        Debe ingresar al menos 6 caracteres.
+      </ng-container>
+    </mat-error>
+  </mat-form-field>
   <p>
     {{ product | json  | uppercase }}
   </p>
-  <button class="secondary" type="button" (click)="clear()">
+  <button mat-raised-button type="button" (click)="clear()">
     Limpiar
   </button>
-  <button class="primary" type="submit" [disabled]="productForm.invalid">
+  <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
     Guardar
   </button>
 </form>

@@ -270,17 +270,6 @@ form {
   p {
     color: red;
   }
-  button {
-    margin: .5em 0;
-
-    &.primary {
-      background-color: blue;
-      color: white;
-    }
-    &.secondary {
-      border: 1px solid blue;
-    }
-  }
 }
 
 
@@ -313,3 +302,6 @@ form {
     visibility: hidden;
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
