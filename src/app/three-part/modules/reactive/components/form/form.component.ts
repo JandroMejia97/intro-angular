@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -8,20 +8,35 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class FormComponent implements OnInit {
   productForm: FormGroup;
+  product: any;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.setupForm();
+    this.productForm.valueChanges.subscribe((value: any) => {
+      this.product = value;
+    });
   }
 
   setupForm() {
     this.productForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
+      // name: new FormControl('', Validators.required),
+      name: ['', Validators.required],
       price: [0.01, [Validators.required, Validators.min(0.01)]],
       stock: [0, [Validators.required, Validators.min(0)]],
-      description: ['', [Validators.minLength(6), Validators.required]],
+      description: ['', [this.isEmptyValue, Validators.minLength(6)]],
     });
+  }
+
+  isEmptyValue(control: AbstractControl): ValidationErrors | null {
+    // const value = control.value;
+    // Destructuración de objetos
+    const { value, valid, errors } = control;
+    if (value && value.length > 0) {
+      return null;
+    }
+    return { isempty: true };
   }
 
   onSubmit(): void {
@@ -33,6 +48,10 @@ export class FormComponent implements OnInit {
   clear(): void {
     this.productForm.reset();
     alert(`Se limpió el formulario`);
+  }
+
+  get descriptionControl(): FormControl {
+    return this.productForm.get('description') as FormControl;
   }
 
 }

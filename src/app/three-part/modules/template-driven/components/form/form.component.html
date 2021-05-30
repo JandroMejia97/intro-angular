@@ -14,7 +14,7 @@
   </label>
   <label>
     Descripción
-    <textarea cols="30" rows="5" ngModel #decription="ngModel" required minlength="6" name="description"></textarea>
+    <textarea cols="30" rows="5" ngModel #decription="ngModel" required minlength="6" maxlength="10" name="description"></textarea>
   </label>
   <ng-container *ngIf="decription.errors && (decription.dirty || decription.touched)">
     <p *ngIf="decription.errors.required">
@@ -23,11 +23,14 @@
     <p *ngIf="decription.errors.minlength">
       Debe ingresar al menos 6 caracteres.
     </p>
+    <p *ngIf="decription.errors.maxlength">
+      Debe ingresar a lo sumo 10 caracteres.
+    </p>
   </ng-container>
   <button class="secondary" type="button" (click)="clear()">
     Limpiar
   </button>
-  <button class="primary" type="submit">
+  <button class="primary" type="submit" [disabled]="productForm.invalid">
     Guardar
   </button>
 </form>
