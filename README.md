@@ -1,27 +1,29 @@
-# HelloWorld
+# Angular - Challenge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
+## Introducción
+El presente documento tiene como objetivo poner aprueba todos los conocimientos
+que han obtenido en las múltiples sesiones de introducción a Angular que hemos 
+tenido.
 
-## Development server
+## Tecnologías
+Para la resolución del presente reto es necesario que se haga uso de:
+* [Angular](https://angular.io)
+* [Angular Material](https://material.angular.io)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Descripción funcional
+Los propietarios de una tienda de ropa en línea contrataron a un desarrollador backend para que les creara una [API Rest](https://drf-products-api.herokuapp.com/api/) que les permitiera gestionar sus productos y asignar variaciones de estos.
 
-## Code scaffolding
+Además, dicha API les debería permitir poder gestionar las distintas marcas de los productos que ofrecen, y también poder gestionar las categorías de estos.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ahora que ya poseen su API Rest desean pasar al siguiente nivel y han decidido contratar a un desarrollador front para que les construya una pequeña aplicación web que consuma los servicios que el desarrollador backend ha creado.
 
-## Build
+Como Producto Mínimo Viable (MVP) están pidiendo que dicha aplicación al menos permita gestionar los productos y sus variaciones.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Esto implica que al momento de dar de alta a un producto se le pueda asignar a este su marca y la categoría a la que pertenece y que además, se le pueda agregar al menos una variante.
 
-## Running unit tests
+Los propietarios desean poder visualizar no más de 20 productos en una tabla, para no saturar a sus usuarios con información.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Además, necesitan tener una ventana emergente donde puedan agregar, editar o ver el detalle de un producto en específico y que al momento de elmininarlo se le solicite al usuario que confirme dicha acción.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
