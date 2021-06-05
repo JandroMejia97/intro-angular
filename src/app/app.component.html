@@ -21,5 +21,19 @@
   <a routerLink="parte-2">Parte 2</a>
   <a routerLink="parte-3">Parte 3</a>
   <router-outlet></router-outlet>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>
+      Product
+    </mat-label>
+    <input type="text" matInput [formControl]="productControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <button (click)="updateProduct(result?.results[0])">Update product</button>
 </div>
 

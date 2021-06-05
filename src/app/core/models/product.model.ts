@@ -1,5 +1,6 @@
-export interface Product {
-  id: number;
+import { Resource } from './resource.model';
+
+export interface Product extends Resource {
   brand: {
     id: number;
     name: string;
