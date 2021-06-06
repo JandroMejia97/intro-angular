@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
 import { Product } from './core/models/product.model';
 import { Result } from './core/models/result.model';
 import { ProductService } from './core/services/product.service';
@@ -11,24 +15,44 @@ import { ProductService } from './core/services/product.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'hello-world';
   result: Result<Product> = undefined;
   productControl = new FormControl('');
   filteredOptions: Observable<Product[]> = of([]);
+  displayedColumns = ['id', 'name', 'brand', 'category', 'currentPrice'];
+  dataSource: MatTableDataSource<Product> = new MatTableDataSource();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((result: Result<Product>) => {
-      this.result = result;
-    });
+    this.getProductsPage(0);
     this.filteredOptions = this.productControl.valueChanges
       .pipe(
         startWith(''),
         map(value => typeof value === 'string' ? value : value.name),
         map(name => name ? this.filter(name) : this.result?.results.slice())
       );
+  }
+
+  getProductsPage(pageEvent: PageEvent | number): void {
+    const number = (typeof pageEvent === 'number' ? pageEvent : pageEvent.pageIndex) + 1;
+    let pageSize = 3000;
+    if (typeof pageEvent !== 'number') {
+      pageSize = pageEvent.pageSize;
+    }
+    this.productService.getProducts(number, pageSize).subscribe((result: Result<Product>) => {
+      this.result = result;
+      this.dataSource = new MatTableDataSource<Product>(this.result?.results);
+      this.dataSource._updateChangeSubscription();
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
 
   displayFn(product: Product): string {
