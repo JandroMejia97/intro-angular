@@ -20,9 +20,10 @@
   <a routerLink="parte-1">Parte 1</a>
   <a routerLink="parte-2">Parte 2</a>
   <a routerLink="parte-3">Parte 3</a>
+  <a routerLink="products">Products</a>
   <router-outlet></router-outlet>
 
-  <mat-form-field class="example-full-width">
+  <!-- <mat-form-field class="example-full-width">
     <mat-label>
       Product
     </mat-label>
@@ -32,87 +33,12 @@
         {{option.name}}
       </mat-option>
     </mat-autocomplete>
-  </mat-form-field>
-
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let product"> {{product.id}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let product"> {{product.name}} </td>
-    </ng-container>
-
-    <!-- Brand Column -->
-    <ng-container matColumnDef="brand">
-      <th mat-header-cell *matHeaderCellDef> Marca </th>
-      <td mat-cell *matCellDef="let product"> {{product.brand?.name}} </td>
-    </ng-container>
-
-    <!-- Category Column -->
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef> Categoría </th>
-      <td mat-cell *matCellDef="let product"> {{product.category?.name}} </td>
-    </ng-container>
-
-    <!-- Current Price Column -->
-    <ng-container matColumnDef="currentPrice">
-      <th mat-header-cell *matHeaderCellDef>Precio Actual</th>
-      <td mat-cell *matCellDef="let product"> {{product.currentPrice}} </td>
-    </ng-container>
-
-    <tr id="HEADER" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row [id]="'product'+product.id" *matRowDef="let product; columns: displayedColumns;"></tr>
-
-
-    <!-- <tr>
-      <th>
-        ID
-      </th>
-      <th>
-        Nombre
-      </th>
-      <th>
-        Marca
-      </th>
-      <th>
-        Categoría
-      </th>
-      <th>
-        Precio Actual
-      </th>
-    </tr>
-
-    <tr *ngFor="let product of result?.results">
-      <td>
-        {{ product.id }}
-      </td>
-      <td>
-        {{ product.name }}
-      </td>
-      <td>
-        {{ product.brand?.name }}
-      </td>
-      <td>
-        {{ product.category?.name }}
-      </td>
-      <td>
-        {{ product.currentPrice }}
-      </td>
-    </tr> -->
-  </table>
+  </mat-form-field> -->
+  <!-- </table>
   <mat-paginator
     [length]="result?.count"
     [pageSizeOptions]="[25]"
     (page)="getProductsPage($event)">
-  </mat-paginator>
+  </mat-paginator> -->
 </div>
 

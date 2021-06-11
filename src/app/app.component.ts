@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { Product } from './core/models/product.model';
 import { Result } from './core/models/result.model';
-import { ProductService } from './core/services/product.service';
+import { ProductService } from './products/services/product.service';
 
 @Component({
   selector: 'app-root',

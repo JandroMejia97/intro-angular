@@ -1,0 +1,6 @@
+<app-products-list
+  [products]="result?.results"
+  (productDelete)="deleteProduct($event)"
+  (productDetail)="detailProduct($event)"
+  (productUpdate)="updateProduct($event)">
+</app-products-list>
