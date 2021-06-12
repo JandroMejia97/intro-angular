@@ -38,7 +38,7 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
     this.setupForm();
     this.categoryService
-      .getCategories(1, 50)
+      .getObjects(1, 50)
       .subscribe((result: Result<Category>) => {
         this.categories = result.results;
         if (this.product) {
