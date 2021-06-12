@@ -1,14 +1,11 @@
+import { Brand } from './brand.model';
+import { Category } from './category.model';
 import { Resource } from './resource.model';
+import { Variation } from './variation.model';
 
 export interface Product extends Resource {
-  brand: {
-    id: number;
-    name: string;
-  };
-  category: {
-    id: number;
-    name: string;
-  };
+  brand: Brand;
+  category: Category;
   name: string;
   currentPrice: string;
   rawPrice: string;
@@ -17,5 +14,6 @@ export interface Product extends Resource {
   isNew: false;
   model: string;
   url: string;
+  variations: Variation[];
   imageUrl: string;
 }

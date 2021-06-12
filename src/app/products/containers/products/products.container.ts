@@ -11,13 +11,15 @@ import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.container.html',
-  styleUrls: ['./products.container.scss']
+  styleUrls: ['./products.container.scss'],
 })
 export class ProductsContainer implements OnInit {
   result: Result<Product> = undefined;
   private detailProductObserver: PartialObserver<Product> = {
     next: (product: Product) => {
-      const dialogRef = this.matDialog.open(ProductDetailComponent, { data: product });
+      const dialogRef = this.matDialog.open(ProductDetailComponent, {
+        data: product,
+      });
       dialogRef.afterClosed().subscribe({
         next: (resp: { edit: boolean }) => {
           if (resp?.edit) {
@@ -27,35 +29,38 @@ export class ProductsContainer implements OnInit {
       });
     },
     error: () => {},
-    complete: () => {}
-  }
+    complete: () => {},
+  };
 
   private updateProductObserver: PartialObserver<Product> = {
     next: (product: Product) => {
       this.openForm(product);
     },
     error: () => {},
-    complete: () => {}
-  }
+    complete: () => {},
+  };
 
   constructor(
     private matDialog: MatDialog,
     private productService: ProductService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getProductsPage(0);
   }
 
   getProductsPage(pageEvent: PageEvent | number): void {
-    const number = (typeof pageEvent === 'number' ? pageEvent : pageEvent.pageIndex) + 1;
+    const number =
+      (typeof pageEvent === 'number' ? pageEvent : pageEvent.pageIndex) + 1;
     let pageSize = 20;
     if (typeof pageEvent !== 'number') {
       pageSize = pageEvent.pageSize;
     }
-    this.productService.getProducts(number, pageSize).subscribe((result: Result<Product>) => {
-      this.result = result;
-    });
+    this.productService
+      .getProducts(number, pageSize)
+      .subscribe((result: Result<Product>) => {
+        this.result = result;
+      });
   }
 
   updateProduct(id: number): void {
@@ -71,7 +76,30 @@ export class ProductsContainer implements OnInit {
   }
 
   openForm(product?: Product) {
-    this.matDialog.open(ProductFormComponent, { data: product })
+    const dialogRef = this.matDialog.open(ProductFormComponent, {
+      data: product,
+      minWidth: '50%',
+      maxWidth: '600px',
+    });
+    dialogRef.afterClosed().subscribe((modalProduct?: Product) => {
+      if (modalProduct) {
+        if (modalProduct.id) {
+          this.productService
+            .updateProduct(modalProduct)
+            .subscribe((updatedProduct: Product) => {
+              const index = this.result.results.findIndex((product: Product) => product.id === updatedProduct.id);
+              if (index >= 0) {
+                this.result.results[index] = updatedProduct;
+              }
+            });
+        } else {
+          this.productService
+            .postProduct(modalProduct)
+            .subscribe((newProduct: Product) =>
+              this.result.results.push(newProduct)
+            );
+        }
+      }
+    });
   }
-
 }

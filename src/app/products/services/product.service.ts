@@ -20,12 +20,16 @@ export class ProductService {
       params: { page: page.toString(), page_size: page_size.toString()},
     });
   }
-  
+
   getProduct(id: number): Observable<Product> {
     return this.httpClient.get<Product>(`${ProductService.API_URL}${id}`);
   }
 
   updateProduct(product: Product): Observable<Product> {
     return this.httpClient.put<Product>(`${ProductService.API_URL}${product.id}/`, product);
+  }
+
+  postProduct(product: Product): Observable<Product> {
+    return this.httpClient.post<Product>(`${ProductService.API_URL}`, product);
   }
 }

@@ -1,3 +1,12 @@
+<h1>
+  Products
+</h1>
+<button
+  color="primary"
+  mat-raised-button
+  (click)="openForm()">
+  Add Product
+</button>
 <app-products-list
   [products]="result?.results"
   (productDelete)="deleteProduct($event)"
