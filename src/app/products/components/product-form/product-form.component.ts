@@ -120,6 +120,14 @@ export class ProductFormComponent implements OnInit {
     return this.productForm.get('category') as FormControl;
   }
 
+  get nameControl(): FormControl {
+    return this.productForm.get('name') as FormControl;
+  }
+
+  getControl(name: string): FormControl {
+    return this.productForm.get(name) as FormControl;
+  }
+
   onSubmit(): void {
     this.close(this.productForm.getRawValue());
   }

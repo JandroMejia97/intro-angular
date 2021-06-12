@@ -19,9 +19,17 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
 
 @NgModule({
-  declarations: [ProductsComponent, ProductsContainer, ProductsListComponent, ProductDetailComponent, ProductFormComponent],
+  declarations: [
+    ProductsComponent,
+    ProductsContainer,
+    ProductsListComponent,
+    ProductDeleteComponent,
+    ProductDetailComponent,
+    ProductFormComponent,
+  ],
   imports: [
     CommonModule,
     MatIconModule,
@@ -36,6 +44,6 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     ProductsRoutingModule,
     MatAutocompleteModule,
-  ]
+  ],
 })
-export class ProductsModule { }
+export class ProductsModule {}

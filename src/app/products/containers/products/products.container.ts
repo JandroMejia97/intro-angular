@@ -1,9 +1,11 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Observer, PartialObserver } from 'rxjs';
 import { Product } from 'src/app/core/models/product.model';
 import { Result } from 'src/app/core/models/result.model';
+import { ProductDeleteComponent } from '../../components/product-delete/product-delete.component';
 import { ProductDetailComponent } from '../../components/product-detail/product-detail.component';
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
 import { ProductService } from '../../services/product.service';
@@ -67,12 +69,38 @@ export class ProductsContainer implements OnInit {
     this.productService.getProduct(id).subscribe(this.updateProductObserver);
   }
 
-  deleteProduct(id: number): void {
-    console.log(`deleteProduct(${id})`);
+  deleteProduct(product: Product): void {
+    this.openConfirmation(product);
   }
 
   detailProduct(id: number): void {
     this.productService.getProduct(id).subscribe(this.detailProductObserver);
+  }
+
+  openConfirmation(product: Product): void {
+    const dialogRef = this.matDialog.open(ProductDeleteComponent, {
+      data: product,
+      minWidth: '50%',
+      maxWidth: '600px',
+    });
+    dialogRef.afterClosed().subscribe((id?: number) => {
+      if (id) {
+        this.productService
+          .deleteProduct(id)
+          .subscribe({
+            next: (response: HttpResponse<never>) => {
+              console.log(response);
+              const { results } = this.result;
+              this.result.results = results.filter((product: Product) => product.id !== id);
+            },
+            error: (response: HttpErrorResponse) => {
+              if (response.status === 404) {
+                
+              }
+            }
+          });
+      }
+    });
   }
 
   openForm(product?: Product) {

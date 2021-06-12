@@ -17,6 +17,12 @@
       <mat-hint>
         Product name
       </mat-hint>
+      <mat-error *ngIf="nameControl.hasError('required')">
+        Name is required
+      </mat-error>
+      <mat-error *ngIf="nameControl.hasError('minlength')">
+        The minimum length is 4 characters.
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>

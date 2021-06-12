@@ -11,7 +11,7 @@ export class ProductsListComponent implements OnChanges {
   @Input()
   products: Product[] = [];
   @Output()
-  productDelete = new EventEmitter<number>();
+  productDelete = new EventEmitter<Product>();
   @Output()
   productDetail = new EventEmitter<number>();
   @Output()
