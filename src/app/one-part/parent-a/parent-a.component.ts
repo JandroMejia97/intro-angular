@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { TestService } from 'src/app/core/services/test.service';
+import { TestService } from '@core/services/test.service';
 
 @Component({
   selector: 'app-parent-a',

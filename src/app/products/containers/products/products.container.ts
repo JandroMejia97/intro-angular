@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Observer, PartialObserver } from 'rxjs';
-import { Product } from 'src/app/core/models/product.model';
-import { Result } from 'src/app/core/models/result.model';
+import { Product } from '@core/models/product.model';
+import { Result } from '@core/models/result.model';
 import { ProductDeleteComponent } from '../../components/product-delete/product-delete.component';
 import { ProductDetailComponent } from '../../components/product-detail/product-detail.component';
 import { ProductFormComponent } from '../../components/product-form/product-form.component';
@@ -95,7 +95,7 @@ export class ProductsContainer implements OnInit {
             },
             error: (response: HttpErrorResponse) => {
               if (response.status === 404) {
-                
+
               }
             }
           });

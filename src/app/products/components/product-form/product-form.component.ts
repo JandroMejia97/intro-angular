@@ -8,12 +8,12 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Brand } from 'src/app/core/models/brand.model';
-import { Category } from 'src/app/core/models/category.model';
-import { Product } from 'src/app/core/models/product.model';
-import { Result } from 'src/app/core/models/result.model';
-import { BrandService } from 'src/app/core/services/brand/brand.service';
-import { CategoryService } from 'src/app/core/services/category/category.service';
+import { Brand } from '@core/models/brand.model';
+import { Category } from '@core/models/category.model';
+import { Product } from '@core/models/product.model';
+import { Result } from '@core/models/result.model';
+import { BrandService } from '@core/services/brand/brand.service';
+import { CategoryService } from '@core/services/category/category.service';
 
 @Component({
   selector: 'app-product-form',

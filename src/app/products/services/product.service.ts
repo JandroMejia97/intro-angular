@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from '@environments/environment';
 import { Product } from '../../core/models/product.model';
 import { Result } from '../../core/models/result.model';
 
