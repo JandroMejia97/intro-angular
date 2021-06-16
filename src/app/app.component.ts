@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.getProductsPage(0);
+    // this.getProductsPage(0);
     this.filteredOptions = this.productControl.valueChanges
       .pipe(
         startWith(''),

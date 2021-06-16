@@ -37,6 +37,10 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.setupForm();
+
+    if (this.product) {
+      this.productForm.patchValue(this.product);
+    }
     this.categoryService
       .getObjects(1, 50)
       .subscribe((result: Result<Category>) => {
@@ -45,12 +49,20 @@ export class ProductFormComponent implements OnInit {
           const category = this.categories.find(
             (category: Category) => category.id === this.product.category.id
           );
-          this.categoryControl.setValue(category);
+          this.categoryControl.setValue(category.id);
         }
       });
     this.brandService
       .getBrands(1, 50)
-      .subscribe((result: Result<Brand>) => (this.brands = result.results));
+      .subscribe((result: Result<Brand>) => {
+        this.brands = result.results;
+        if (this.product) {
+          const brand = this.brands.find(
+            (brand: Brand) => brand.id === this.product.brand.id
+          );
+          this.brandControl.setValue(brand.id);
+        }
+      });
 
     this.filteredBrands = this.brandControl.valueChanges.pipe(
       startWith(''),
@@ -66,10 +78,6 @@ export class ProductFormComponent implements OnInit {
         name ? this.filter(name, this.categories) : this.categories.slice()
       )
     );
-
-    if (this.product) {
-      this.productForm.patchValue(this.product);
-    }
   }
 
   displayFn(resource: Brand | Category): string {
@@ -89,6 +97,7 @@ export class ProductFormComponent implements OnInit {
 
   setupForm() {
     this.productForm = this.formBuilder.group({
+      id: [null],
       name: [
         '',
         [

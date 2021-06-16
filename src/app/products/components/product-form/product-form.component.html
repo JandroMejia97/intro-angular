@@ -5,6 +5,9 @@
   <form
     [formGroup]="productForm"
     (ngSubmit)="onSubmit()">
+    <input
+        type="hidden"
+        formControlName="id">
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
       <input
@@ -29,7 +32,7 @@
         Category
       </mat-label>
       <mat-select required formControlName="category">
-        <mat-option *ngFor="let category of categories" [value]="category">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
           {{ category.name }}
         </mat-option>
       </mat-select>
@@ -53,7 +56,12 @@
       <mat-label>
         Brand
       </mat-label>
-      <input
+      <mat-select required formControlName="brand">
+        <mat-option *ngFor="let brand of brands" [value]="brand.id">
+          {{ brand.name }}
+        </mat-option>
+      </mat-select>
+      <!-- <input
         matInput
         type="text"
         formControlName="brand"
@@ -64,7 +72,7 @@
         <mat-option *ngFor="let option of filteredBrands | async" [value]="option">
           {{option.name}}
         </mat-option>
-      </mat-autocomplete>
+      </mat-autocomplete> -->
       <mat-hint>
         Product brand
       </mat-hint>

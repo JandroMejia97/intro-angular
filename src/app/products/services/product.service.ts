@@ -26,7 +26,7 @@ export class ProductService {
   }
 
   getProduct(id: number): Observable<Product> {
-    return this.httpClient.get<Product>(`${ProductService.API_URL}${id}`);
+    return this.httpClient.get<Product>(`${ProductService.API_URL}${id}/`);
   }
 
   updateProduct(product: Product): Observable<Product> {
@@ -42,7 +42,7 @@ export class ProductService {
 
   deleteProduct(id: number): Observable<HttpResponse<never>> {
     return this.httpClient.delete<never>(
-      `${ProductService.API_URL}${id}`,
+      `${ProductService.API_URL}${id}/`,
       { observe: 'response' }
     );
   }
